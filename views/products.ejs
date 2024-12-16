@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - TechTrove</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav>
+    <!-- Navigation same as index.html -->
+</nav>
+
+<div class="container">
+    <h1>Our Products</h1>
+
+    <div class="product-selection">
+        <select id="productSelect" multiple>
+            <!-- Products will be loaded dynamically -->
+        </select>
+
+        <div id="totalCost">
+            Total: $0.00
+        </div>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+        <!-- Products will be loaded dynamically -->
+    </div>
+</div>
+
+<script>
+    async function loadProducts() {
+        try {
+            const response = await fetch('/api/products');
+            const products = await response.json();
+
+            const productGrid = document.getElementById('productGrid');
+            const productSelect = document.getElementById('productSelect');
+
+            products.forEach(product => {
+                // Add to grid
+                const productCard = createProductCard(product);
+                productGrid.appendChild(productCard);
+
+                // Add to select
+                const option = document.createElement('option');
+                option.value = product.ID;
+                option.textContent = `${product.Name} - $${product.Cost}`;
+                productSelect.appendChild(option);
+            });
+
+            productSelect.addEventListener('change', calculateTotal);
+        } catch (error) {
+            console.error('Error loading products:', error);
+        }
+    }
+
+    function createProductCard(product) {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+        <h3>${product.Name}</h3>
+        <p>${product.Description}</p>
+        <p class="price">$${product.Cost}</p>
+    `;
+        return card;
+    }
+
+    function calculateTotal() {
+        const productSelect = document.getElementById('productSelect');
+        const selectedOptions = Array.from(productSelect.selectedOptions);
+
+        let subtotal = 0;
+        selectedOptions.forEach(option => {
+            const price = parseFloat(option.textContent.split('$')[1]);
+            subtotal += price;
+        });
+
+        const tax = subtotal * 0.07;
+        const shipping = subtotal * 0.01;
+        const total = subtotal + tax + shipping;
+
+        document.getElementById('totalCost').innerHTML = `
+        Subtotal: $${subtotal.toFixed(2)}<br>
+        Tax (7%): $${tax.toFixed(2)}<br>
+        Shipping (1%): $${shipping.toFixed(2)}<br>
+        <strong>Total: $${total.toFixed(2)}</strong>
+    `;
+    }
+</script>
+</body>
+</html>>

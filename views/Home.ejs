@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cat 'N Dog Pics</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .table-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        thead {
+            background: #764ba2;
+            color: white;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+        }
+
+        th {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .index-column {
+            background-color: #f1f3f5;
+            font-weight: bold;
+            color: #495057;
+            text-align: center;
+        }
+
+        td.index-column {
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+<div class="table-container">
+    <table>
+        <thead>
+        <tr>
+            <th class="index-column"></th>
+            <th>NFT (Non-Fungible Tokens)</th>
+            <th>Cat and Dog Pictures from CatNDogPics.com</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="index-column">Value</td>
+            <td>Almost nothing</td>
+            <td>Nothing</td>
+        </tr>
+        <tr>
+            <td class="index-column">Fungibility</td>
+            <td>Non-Fungible</td>
+            <td>Fungible (Go ahead, Funge 'em!)</td>
+        </tr>
+        <tr>
+            <td class="index-column">Use</td>
+            <td>None</td>
+            <td>Very Cute</td>
+        </tr>
+        <tr>
+            <td class="index-column">Ugliness</td>
+            <td>Ugly images of weird looking apes</td>
+            <td>Cute pictures of my cat and dog</td>
+        </tr>
+        <tr>
+            <td class="index-column">Navigation</td>
+            <td><a href="./contact">Contact Us</a></td>
+            <td><a href="./products">Products</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
